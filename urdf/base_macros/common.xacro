@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="cylinder_inertia" params="mass length radius
+        center_of_mass_x:=0 center_of_mass_y:=0 center_of_mass_z:=0 
+        center_of_mass_roll:=0 center_of_mass_pitch:=0 center_of_mass_yaw:=0">
+        <inertial>
+            <origin xyz="${center_of_mass_x} ${center_of_mass_y} ${center_of_mass_z}"
+                    rpy="${center_of_mass_roll} ${center_of_mass_pitch} ${center_of_mass_yaw}"/>
+            <mass value="${mass}" />
+            <inertia ixx="${(mass/12)*(3*radius*radius + length*length)}"
+                     iyy="${(mass/12)*(3*radius*radius + length*length)}"
+                     iyz="0.0" ixy="0.0" ixz="0.0"
+                     izz="${(mass/2)*(radius*radius)}" />
+        </inertial>
+    </xacro:macro>
+
+    <xacro:macro name="cuboid_inertia" params="mass length breadth height
+        center_of_mass_x:=0 center_of_mass_y:=0 center_of_mass_z:=0 
+        center_of_mass_roll:=0 center_of_mass_pitch:=0 center_of_mass_yaw:=0">
+        <inertial>
+            <origin xyz="${center_of_mass_x} ${center_of_mass_y} ${center_of_mass_z}"
+                    rpy="${center_of_mass_roll} ${center_of_mass_pitch} ${center_of_mass_yaw}"/>
+            <mass value="${mass}" />
+            <inertia ixx="${(mass/12)*(breadth*breadth + height*height)}"
+                     iyy="${(mass/12)*(height*height + length*length)}"
+                     iyz="0.0" ixy="0.0" ixz="0.0"
+                     izz="${(mass/12)*(breadth*breadth + length*length)}" />
+        </inertial>
+    </xacro:macro>
+
+    <xacro:macro name="sphere_inertia" params="mass radius
+        center_of_mass_x:=0 center_of_mass_y:=0 center_of_mass_z:=0 
+        center_of_mass_roll:=0 center_of_mass_pitch:=0 center_of_mass_yaw:=0">
+        <inertial>
+            <origin xyz="${center_of_mass_x} ${center_of_mass_y} ${center_of_mass_z}"
+                    rpy="${center_of_mass_roll} ${center_of_mass_pitch} ${center_of_mass_yaw}"/>
+            <mass value="${mass}" />
+            <inertia ixx="${(mass*0.4)*(radius*radius)}"
+                     iyy="${(mass*0.4)*(radius*radius)}"
+                     iyz="0.0" ixy="0.0" ixz="0.0"
+                     izz="${(mass*0.4)*(radius*radius)}" />
+        </inertial>
+    </xacro:macro>
+
+</robot>

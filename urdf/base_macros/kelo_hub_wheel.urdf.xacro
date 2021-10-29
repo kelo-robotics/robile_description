@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="kelo_hub_wheel" params="name parent *origin">
+
+        <xacro:include filename="$(find robile_description)/urdf/base_macros/common.xacro" />
+
+        <joint name="${name}_joint" type="continuous">
+            <xacro:insert_block name="origin" />
+            <axis xyz="0 1 0"/>
+            <parent link="${parent}"/>
+            <child link="${name}_link" />
+        </joint>
+
+        <transmission name="${name}_transmission">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${name}_joint">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${name}_motor">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+
+        <link name="${name}_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robile_description/meshes/kelo_drive/kelo_drive_hub_wheel.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="1.570796327 0 0"/>
+                <geometry>
+                    <cylinder radius="0.0515" length="0.035"/>
+                </geometry>
+            </collision>
+
+            <!-- <xacro:cylinder_inertia mass="0.5" radius="0.0515" length="0.035" center_of_mass_roll="1.570796327"/> -->
+            <!--HACK: Use large cuboid inertias to fix the issue that the model breaks when JointVelocity controller is activated -->
+            <xacro:cuboid_inertia mass="10.0" length="0.233" breadth="0.233" height="0.233"/>
+        </link>
+
+    </xacro:macro>
+
+</robot>

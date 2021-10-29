@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="robile_body" params="name color:=yellow with_wheel:=false">
+
+        <!-- Include required xacro files -->
+        <xacro:include filename="$(find robile_description)/urdf/base_macros/common.xacro" />
+
+        <!-- Properties for a robile module -->
+        <xacro:property name="robile_size_x" value="0.233"/>
+        <xacro:property name="robile_size_y" value="0.233"/>
+        <xacro:property name="robile_size_z" value="0.239"/>
+        <xacro:property name="center_of_mass_x" value="0.0005"/>
+        <xacro:property name="center_of_mass_y" value="0.0001"/>
+        <xacro:property name="center_of_mass_z" value="0.119"/>
+
+        <link name="${name}_link">
+
+            <!-- Aluminium casing of the robile -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <xacro:if value="${with_wheel}">
+                        <mesh filename="package://robile_description/meshes/robile/wheeled_robile_body.dae" scale="1 1 1"/>
+                    </xacro:if>
+                    <xacro:unless value="${with_wheel}">
+                        <mesh filename="package://robile_description/meshes/robile/general_robile_body.dae" scale="1 1 1"/>
+                    </xacro:unless>
+                </geometry>
+            </visual>
+
+            <!-- robile lid -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robile_description/meshes/robile/robile_lid.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+
+            <!-- robile lid cover (color passed as a parameter) -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robile_description/meshes/robile/robile_lid_cover_${color}.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+
+            <!-- Collision box for robile body -->
+            <collision>
+                <origin xyz="${center_of_mass_x} ${center_of_mass_y} ${center_of_mass_z}" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${robile_size_x} ${robile_size_y} ${robile_size_z}" />
+                </geometry>
+            </collision>
+
+            <!-- Inertia for robile body -->
+            <xacro:cuboid_inertia mass="5.0"
+                                length="${robile_size_x}"
+                                breadth="${robile_size_y}"
+                                height="${robile_size_z}" 
+                                center_of_mass_x="${center_of_mass_x}"
+                                center_of_mass_y="${center_of_mass_y}"
+                                center_of_mass_z="${center_of_mass_z}"/>
+        </link>
+
+    </xacro:macro>
+
+</robot>
