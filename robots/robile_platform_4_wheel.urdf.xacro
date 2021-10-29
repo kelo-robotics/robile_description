@@ -1,0 +1,35 @@
+<?xml version='1.0'?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robile_platform_4_wheel" >
+
+    <!-- Include desired robile modules -->
+    <xacro:include filename="$(find robile_description)/urdf/robile_modules/robile_active_wheel.urdf.xacro" />
+    <xacro:include filename="$(find robile_description)/urdf/robile_modules/robile_cpu.urdf.xacro" />
+    <xacro:include filename="$(find robile_description)/urdf/robile_modules/robile_master_battery.urdf.xacro" />
+
+    <link name="base_link"/>
+
+    <!-- Build platform using robile modules -->
+    <xacro:robile_active_wheel name="front_right_robile" parent="base_link">
+        <origin xyz="0.233 -0.1165 0.05" rpy="0.0 0.0 0.0"/>
+    </xacro:robile_active_wheel>
+
+    <xacro:robile_active_wheel name="rear_right_robile" parent="base_link">
+        <origin xyz="-0.233 -0.1165 0.05" rpy="0.0 0.0 0.0"/>
+    </xacro:robile_active_wheel>
+
+    <xacro:robile_master_battery name="battery_robile" parent="base_link">
+        <origin xyz="0.0 0.1165 0.05" rpy="0.0 0.0 0.0"/>
+    </xacro:robile_master_battery>
+
+    <xacro:robile_cpu name="cpu_robile" parent="base_link">
+        <origin xyz="0.0 -0.1165 0.05" rpy="0.0 0.0 0.0"/>
+    </xacro:robile_cpu>
+
+    <xacro:robile_active_wheel name="rear_left_robile" parent="base_link">
+        <origin xyz="-0.233 0.1165 0.05" rpy="0.0 0.0 0.0"/>
+    </xacro:robile_active_wheel>
+
+    <xacro:robile_active_wheel name="front_left_robile" parent="base_link">
+        <origin xyz="0.233 0.1165 0.05" rpy="0.0 0.0 0.0"/>
+    </xacro:robile_active_wheel>
+</robot>
