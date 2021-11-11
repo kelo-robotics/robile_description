@@ -1,0 +1,11 @@
+<?xml version='1.0'?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robile_platform_gazebo">
+
+    <xacro:arg name="platform_config" default="" />
+
+    <!-- Include the xacro file to instantiate the robot -->
+    <xacro:include filename="$(find robile_description)/robots/$(arg platform_config).urdf.xacro" />
+
+    <!-- Include the xacro file to start gazebo ros control plugin -->
+    <xacro:include filename="$(find robile_description)/gazebo/gazebo_ros_control.xacro" />
+</robot>
