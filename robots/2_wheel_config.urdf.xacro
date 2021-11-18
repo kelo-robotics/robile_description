@@ -38,7 +38,7 @@ You should have received a copy of the GNU Lesser General Public
 License LGPL and BSD license along with this program.
 -->
 
-<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robile_platform_4_wheel" >
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="2_wheel_config" >
 
     <!-- Include desired robile modules -->
     <xacro:include filename="$(find robile_description)/urdf/robile_modules/robile_active_wheel.urdf.xacro" />
