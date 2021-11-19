@@ -44,7 +44,7 @@ License LGPL and BSD license along with this program.
 
         <!-- Include xacro files-->
         <xacro:include filename="$(find robile_description)/urdf/base_macros/brick_housing.urdf.xacro" />
-        <xacro:include filename="$(find robile_description)/urdf/base_macros/caster_wheel.urdf.xacro" />
+        <xacro:include filename="$(find robile_description)/urdf/base_macros/passive_caster_wheel.urdf.xacro" />
 
         <joint name="${name}_joint" type="fixed">
             <xacro:insert_block name="origin" />
@@ -54,9 +54,9 @@ License LGPL and BSD license along with this program.
 
         <xacro:brick_housing name="${name}" with_wheel="true" color="blue"/>
 
-        <xacro:caster_wheel name="${name}_caster_wheel" parent="${name}_link">
+        <xacro:passive_caster_wheel name="${name}_caster_wheel" parent="${name}_link">
             <origin xyz="0 0 0" rpy="0 0 0.0"/>
-        </xacro:caster_wheel>
+        </xacro:passive_caster_wheel>
 
     </xacro:macro>
 

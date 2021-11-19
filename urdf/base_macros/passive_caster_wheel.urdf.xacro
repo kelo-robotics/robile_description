@@ -40,7 +40,7 @@ License LGPL and BSD license along with this program.
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="caster_wheel" params="name parent *origin">
+    <xacro:macro name="passive_caster_wheel" params="name parent *origin">
 
         <xacro:include filename="$(find robile_description)/urdf/base_macros/common.xacro" />
 
@@ -67,7 +67,7 @@ License LGPL and BSD license along with this program.
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
-                    <mesh filename="package://robile_description/meshes/caster_wheel/pivot.dae" scale="1 1 1"/>
+                    <mesh filename="package://robile_description/meshes/passive_caster_wheel/pivot.dae" scale="1 1 1"/>
                 </geometry>
             </visual>
 
@@ -108,7 +108,7 @@ License LGPL and BSD license along with this program.
             <visual>
                 <origin xyz="-0.031557 0.00007 0.0" rpy="0 0 0"/>
                 <geometry>
-                    <mesh filename="package://robile_description/meshes/caster_wheel/wheel.dae" scale="1 1 1"/>
+                    <mesh filename="package://robile_description/meshes/passive_caster_wheel/wheel.dae" scale="1 1 1"/>
                 </geometry>
             </visual>
 
