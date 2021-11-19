@@ -43,7 +43,7 @@ License LGPL and BSD license along with this program.
     <xacro:macro name="kelo_drive" params="name parent *origin">
 
         <xacro:include filename="$(find robile_description)/urdf/base_macros/common.xacro" />
-        <xacro:include filename="$(find robile_description)/urdf/base_macros/kelo_hub_wheel.urdf.xacro" />
+        <xacro:include filename="$(find robile_description)/urdf/base_macros/kelo_drive_wheel.urdf.xacro" />
 
         <!-- PIVOT -->
         <joint name="${name}_pivot_joint" type="continuous">
@@ -85,14 +85,14 @@ License LGPL and BSD license along with this program.
         </link>
 
         <!-- LEFT HUB WHEEL -->
-        <xacro:kelo_hub_wheel name="${name}_left_hub_wheel" parent="${name}_pivot_link">
+        <xacro:kelo_drive_wheel name="${name}_left_hub_wheel" parent="${name}_pivot_link">
             <origin xyz="0 0.039326 0.001514" rpy="0 0 0.0"/>
-        </xacro:kelo_hub_wheel>
+        </xacro:kelo_drive_wheel>
 
         <!-- RIGHT HUB WHEEL -->
-        <xacro:kelo_hub_wheel name="${name}_right_hub_wheel" parent="${name}_pivot_link">
+        <xacro:kelo_drive_wheel name="${name}_right_hub_wheel" parent="${name}_pivot_link">
             <origin xyz="0 -0.039326 0.001514" rpy="0 0 0.0"/>
-        </xacro:kelo_hub_wheel>
+        </xacro:kelo_drive_wheel>
 
     </xacro:macro>
 

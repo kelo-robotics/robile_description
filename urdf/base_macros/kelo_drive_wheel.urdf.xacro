@@ -40,7 +40,7 @@ License LGPL and BSD license along with this program.
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="kelo_hub_wheel" params="name parent *origin">
+    <xacro:macro name="kelo_drive_wheel" params="name parent *origin">
 
         <xacro:include filename="$(find robile_description)/urdf/base_macros/common.xacro" />
 
@@ -66,7 +66,7 @@ License LGPL and BSD license along with this program.
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
-                    <mesh filename="package://robile_description/meshes/kelo_drive/kelo_drive_hub_wheel.dae" scale="1 1 1"/>
+                    <mesh filename="package://robile_description/meshes/kelo_drive/kelo_drive_wheel.dae" scale="1 1 1"/>
                 </geometry>
             </visual>
 
