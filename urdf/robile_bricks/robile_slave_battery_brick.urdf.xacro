@@ -42,7 +42,7 @@ License LGPL and BSD license along with this program.
 
     <xacro:macro name="robile_slave_battery_brick" params="name parent *origin">
 
-        <xacro:include filename="$(find robile_description)/urdf/base_macros/robile_body.urdf.xacro" />
+        <xacro:include filename="$(find robile_description)/urdf/base_macros/brick_housing.urdf.xacro" />
 
         <joint name="${name}_joint" type="fixed">
             <xacro:insert_block name="origin" />
@@ -50,7 +50,7 @@ License LGPL and BSD license along with this program.
             <child link="${name}_link" />
         </joint>
 
-        <xacro:robile_body name="${name}" color="green"/>
+        <xacro:brick_housing name="${name}" color="green"/>
 
     </xacro:macro>
 

@@ -40,7 +40,7 @@ License LGPL and BSD license along with this program.
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="robile_body" params="name color:=yellow with_wheel:=false">
+    <xacro:macro name="brick_housing" params="name color:=yellow with_wheel:=false">
 
         <!-- Include required xacro files -->
         <xacro:include filename="$(find robile_description)/urdf/base_macros/common.xacro" />
@@ -60,10 +60,10 @@ License LGPL and BSD license along with this program.
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
                     <xacro:if value="${with_wheel}">
-                        <mesh filename="package://robile_description/meshes/robile/wheeled_robile_body.dae" scale="1 1 1"/>
+                        <mesh filename="package://robile_description/meshes/robile_brick_housing/wheeled_brick_housing.dae" scale="1 1 1"/>
                     </xacro:if>
                     <xacro:unless value="${with_wheel}">
-                        <mesh filename="package://robile_description/meshes/robile/general_robile_body.dae" scale="1 1 1"/>
+                        <mesh filename="package://robile_description/meshes/robile_brick_housing/general_brick_housing.dae" scale="1 1 1"/>
                     </xacro:unless>
                 </geometry>
             </visual>
@@ -72,7 +72,7 @@ License LGPL and BSD license along with this program.
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
-                    <mesh filename="package://robile_description/meshes/robile/robile_lid.dae" scale="1 1 1"/>
+                    <mesh filename="package://robile_description/meshes/robile_brick_housing/lid.dae" scale="1 1 1"/>
                 </geometry>
             </visual>
 
@@ -80,11 +80,11 @@ License LGPL and BSD license along with this program.
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
-                    <mesh filename="package://robile_description/meshes/robile/robile_lid_cover_${color}.dae" scale="1 1 1"/>
+                    <mesh filename="package://robile_description/meshes/robile_brick_housing/lid_cover_${color}.dae" scale="1 1 1"/>
                 </geometry>
             </visual>
 
-            <!-- Collision box for robile body -->
+            <!-- Collision box for brick housing -->
             <collision>
                 <origin xyz="${center_of_mass_x} ${center_of_mass_y} ${center_of_mass_z}" rpy="0 0 0"/>
                 <geometry>
@@ -92,7 +92,7 @@ License LGPL and BSD license along with this program.
                 </geometry>
             </collision>
 
-            <!-- Inertia for robile body -->
+            <!-- Inertia for brick housing -->
             <xacro:cuboid_inertia mass="5.0"
                                 length="${robile_size_x}"
                                 breadth="${robile_size_y}"
