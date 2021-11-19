@@ -40,7 +40,7 @@ License LGPL and BSD license along with this program.
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="robile_master_battery" params="name parent *origin">
+    <xacro:macro name="robile_cpu_brick" params="name parent *origin">
 
         <xacro:include filename="$(find robile_description)/urdf/base_macros/robile_body.urdf.xacro" />
 
@@ -50,7 +50,7 @@ License LGPL and BSD license along with this program.
             <child link="${name}_link" />
         </joint>
 
-        <xacro:robile_body name="${name}" color="green"/>
+        <xacro:robile_body name="${name}"/>
 
     </xacro:macro>
 

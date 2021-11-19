@@ -45,7 +45,7 @@ License LGPL and BSD license along with this program.
         <!-- Include required xacro files -->
         <xacro:include filename="$(find robile_description)/urdf/base_macros/common.xacro" />
 
-        <!-- Properties for a robile module -->
+        <!-- Properties for a robile brick -->
         <xacro:property name="robile_size_x" value="0.233"/>
         <xacro:property name="robile_size_y" value="0.233"/>
         <xacro:property name="robile_size_z" value="0.239"/>
