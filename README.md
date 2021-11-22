@@ -14,7 +14,7 @@ The following ROBILE bricks are made available as [xacro macro](http://wiki.ros.
 | robile_cpu_brick            | A mockup of a ROBILE brick with an [onboard CPU](https://www.shop.kelo-robotics.com/product-page/onboard-cpu)                      |
 | robile_empty_brick          | A mockup of a full-sized [empty ROBILE brick](https://www.shop.kelo-robotics.com/product-page/full-sized-empty-brick)              |
 
-## Building a custom ROBILE platform configuration
+## TUTORIAL: Building a custom ROBILE platform configuration
 
 The above ROBILE bricks can be used to construct customized platform's. We describe the procedure to build a new platform with a simple example. Lets assume we want to build a new platform with the name `simple_config`. This platform consists of two active wheels and two passive wheels with the following arrangement. For simplicity, lets assume we do not include any CPU or master_battery bricks in the platform. <br> ![Simple config arrangement](docs/images/simple_config_example_layout.png)
 
