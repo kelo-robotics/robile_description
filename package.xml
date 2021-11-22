@@ -2,7 +2,7 @@
 <package format="2">
   <name>robile_description</name>
   <version>1.0.0</version>
-  <description>Robot descriptions for the KELO robile in form of URDF files and meshes</description>
+  <description>Robot descriptions for the KELO ROBILE in form of URDF files and meshes</description>
 
   <maintainer email="nowak@locomotec.com">Walter Nowak</maintainer>
   <maintainer email="blumenthal@locomotec.com">Sebastian Blumenthal</maintainer>
