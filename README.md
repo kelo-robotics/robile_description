@@ -6,13 +6,13 @@ Robot description for the KELO ROBILE's in form of URDF files and meshes
 
 The following ROBILE bricks are made available as [xacro macro](http://wiki.ros.org/xacro#Macros)'s. To reduce the computational load during simulation and to protect proprietary design, the meshes provided in this package are an approximation of the real hardware. The bricks are defined in the [urdf/robile_bricks](urdf/robile_bricks/) directory.
 
-| ROBILE brick                | Purpose                                                                                                                            |
-|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| robile_active_wheel_brick   | A ROBILE brick with an [active KELO Drive](https://www.shop.kelo-robotics.com/product-page/active-wheel) attached to it.           |
-| robile_passive_wheel_brick  | A ROBILE brick with a [passive caster wheel](https://www.shop.kelo-robotics.com/product-page/passive-caster-wheel) attached to it. |
-| robile_master_battery_brick | A mockup of a ROBILE brick with a [master battery](https://www.shop.kelo-robotics.com/product-page/onboard-cpu)                    |
-| robile_cpu_brick            | A mockup of a ROBILE brick with an [onboard CPU](https://www.shop.kelo-robotics.com/product-page/onboard-cpu)                      |
-| robile_empty_brick          | A mockup of a full-sized [empty ROBILE brick](https://www.shop.kelo-robotics.com/product-page/full-sized-empty-brick)              |
+| ROBILE brick                | Purpose                                                                                                                                  |
+|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| robile_active_wheel_brick   | A ROBILE brick with an [active KELO Drive](https://www.shop.kelo-robotics.com/product-page/active-wheel) attached to it.                 |
+| robile_passive_wheel_brick  | A ROBILE brick with a [passive caster wheel](https://www.shop.kelo-robotics.com/product-page/passive-caster-wheel) attached to it.       |
+| robile_master_battery_brick | A mockup of a ROBILE brick with a [master battery](https://www.shop.kelo-robotics.com/product-page/master-battery-with-power-management) |
+| robile_cpu_brick            | A mockup of a ROBILE brick with an [onboard CPU](https://www.shop.kelo-robotics.com/product-page/onboard-cpu)                            |
+| robile_empty_brick          | A mockup of a full-sized [empty ROBILE brick](https://www.shop.kelo-robotics.com/product-page/full-sized-empty-brick)                    |
 
 ## TUTORIAL: Building a custom ROBILE platform configuration
 
