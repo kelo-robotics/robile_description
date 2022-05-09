@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="gazebo_laser_plugin" params="name topic sample_size 
+                                                    update_rate min_angle 
+                                                    max_angle min_range max_range
+                                                    robot_namespace visualize 
+                                                    sensor_type:=gpu_ray
+                                                    plugin_filename:=libgazebo_ros_gpu_laser" >
+        <gazebo reference="${name}_link">
+            <!-- <turnGravityOff>true</turnGravityOff> -->
+            <sensor type="${sensor_type}" name="${name}">
+                <pose>0 0 0 0 0 0</pose>
+                <visualize>${visualize}</visualize>
+                <update_rate>${update_rate}</update_rate>
+                <ray>
+                    <scan>
+                        <horizontal>
+                            <samples>${sample_size}</samples>
+                            <resolution>1</resolution>
+                            <min_angle>${min_angle}</min_angle>
+                            <max_angle>${max_angle}</max_angle>
+                        </horizontal>
+                    </scan>
+                    <range>
+                        <min>${min_range}</min>
+                        <max>${max_range}</max>
+                        <resolution>0.01</resolution>
+                    </range>
+                    <noise>
+                        <type>gaussian</type>
+                        <mean>0.0</mean>
+                        <stddev>0.005</stddev>
+                    </noise>
+                </ray>
+                <plugin name="${name}_controller" filename="${plugin_filename}.so">
+                    <topicName>${topic}</topicName>
+                    <frameName>${name}_link</frameName>
+                    <robotNamespace>${robot_namespace}</robotNamespace>
+                </plugin>
+            </sensor>
+        </gazebo>
+    </xacro:macro>
+
+</robot>

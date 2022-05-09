@@ -44,7 +44,7 @@ License LGPL and BSD license along with this program.
     <xacro:include filename="$(find robile_description)/urdf/robile_bricks/robile_active_wheel_brick.urdf.xacro" />
     <xacro:include filename="$(find robile_description)/urdf/robile_bricks/robile_cpu_brick.urdf.xacro" />
     <xacro:include filename="$(find robile_description)/urdf/robile_bricks/robile_master_battery_brick.urdf.xacro" />
-	<xacro:include filename="$(find kelo_description)/urdf/sensors/sick_lms1xx.urdf.xacro" />
+    <xacro:include filename="$(find robile_description)/urdf/sensors/datalogic.urdf.xacro" />
 	
     <link name="base_link"/>
 
@@ -74,8 +74,8 @@ License LGPL and BSD license along with this program.
     </xacro:robile_active_wheel_brick>
     
     <!-- SICK LASER -->
-    <xacro:sick_lms1xx name="base_laser_front" parent="base_link" topic="base_scan">
+    <xacro:datalogic name="base_laser_front" parent="base_link" topic="base_scan">
         <origin xyz="0.42 0.0 0.35" rpy="0 0 0"/>
-    </xacro:sick_lms1xx> 
+    </xacro:datalogic> 
     
 </robot>
