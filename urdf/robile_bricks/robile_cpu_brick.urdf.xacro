@@ -41,17 +41,61 @@ License LGPL and BSD license along with this program.
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:macro name="robile_cpu_brick" params="name parent *origin">
-
-        <xacro:include filename="$(find robile_description)/urdf/base_macros/brick_housing.urdf.xacro" />
-
+        
+        <!-- Properties for cpu brick -->
+        <xacro:property name="color" value="yellow"/>
+        <xacro:property name="robile_size_x" value="0.233"/>
+        <xacro:property name="robile_size_y" value="0.233"/>
+        <xacro:property name="robile_size_z" value="0.239"/>
+        
         <joint name="${name}_joint" type="fixed">
             <xacro:insert_block name="origin" />
             <parent link="${parent}"/>
             <child link="${name}_link" />
         </joint>
+        
+        <link name="${name}_link">
+            <!-- Aluminium casing -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robile_description/meshes/robile_brick_housing/general_brick_housing.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
 
-        <xacro:brick_housing name="${name}"/>
+            <!-- robile lid -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robile_description/meshes/robile_brick_housing/lid.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
 
-    </xacro:macro>
+            <!-- robile lid cover (color passed as a parameter) -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robile_description/meshes/robile_brick_housing/lid_cover_${color}.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+
+            <!-- Collision box for brick housing -->
+            <collision>
+                <origin xyz="0 0 ${robile_size_z/2}" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${robile_size_x} ${robile_size_y} ${robile_size_z}" />
+                </geometry>
+            </collision>
+
+            <!-- Inertia for cpu brick -->
+            <inertial>
+                <mass value="6.44075" />
+                <origin xyz="0.00413 0.0053 0.10792" />
+                <inertia  ixx="0.059819" ixy="0.000584" ixz="-0.000138" iyy="0.059845" iyz="-0.000069" izz="0.06767" />
+            </inertial>
+
+        </link>
+
+    </xacro:macro>  
 
 </robot>

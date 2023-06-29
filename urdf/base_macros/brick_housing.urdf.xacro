@@ -49,10 +49,7 @@ License LGPL and BSD license along with this program.
         <xacro:property name="robile_size_x" value="0.233"/>
         <xacro:property name="robile_size_y" value="0.233"/>
         <xacro:property name="robile_size_z" value="0.239"/>
-        <xacro:property name="center_of_mass_x" value="0.0005"/>
-        <xacro:property name="center_of_mass_y" value="0.0001"/>
-        <xacro:property name="center_of_mass_z" value="0.119"/>
-
+        
         <link name="${name}_link">
 
             <!-- Aluminium casing of the robile -->
@@ -86,20 +83,27 @@ License LGPL and BSD license along with this program.
 
             <!-- Collision box for brick housing -->
             <collision>
-                <origin xyz="${center_of_mass_x} ${center_of_mass_y} ${center_of_mass_z}" rpy="0 0 0"/>
+                <origin xyz="0 0 ${robile_size_z/2}" rpy="0 0 0"/>
                 <geometry>
                     <box size="${robile_size_x} ${robile_size_y} ${robile_size_z}" />
                 </geometry>
             </collision>
 
             <!-- Inertia for brick housing -->
-            <xacro:cuboid_inertia mass="5.0"
-                                length="${robile_size_x}"
-                                breadth="${robile_size_y}"
-                                height="${robile_size_z}" 
-                                center_of_mass_x="${center_of_mass_x}"
-                                center_of_mass_y="${center_of_mass_y}"
-                                center_of_mass_z="${center_of_mass_z}"/>
+            <xacro:if value="${with_wheel}">
+                <inertial>
+                    <mass value="4.554" />
+                    <origin xyz="0.00005 0.00009 0.12048" />
+                    <inertia  ixx="0.0512" ixy="0.0000062" ixz="0.0000224" iyy="0.051012" iyz="0.000027" izz="0.062741" />
+                </inertial>
+            </xacro:if>
+            <xacro:unless value="${with_wheel}">
+                <inertial>
+                    <mass value="4.554" />
+                    <origin xyz="0.00005 0.00009 0.12048" />
+                    <inertia  ixx="0.0512" ixy="0.0000062" ixz="0.0000224" iyy="0.051012" iyz="0.000027" izz="0.062741" />
+                </inertial>
+		    </xacro:unless>
         </link>
 
     </xacro:macro>

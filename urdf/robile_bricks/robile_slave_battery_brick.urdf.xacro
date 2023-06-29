@@ -41,16 +41,59 @@ License LGPL and BSD license along with this program.
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:macro name="robile_slave_battery_brick" params="name parent *origin">
-
-        <xacro:include filename="$(find robile_description)/urdf/base_macros/brick_housing.urdf.xacro" />
-
+        <!-- Properties for slave battery brick -->
+        <xacro:property name="color" value="green"/>
+        <xacro:property name="robile_size_x" value="0.233"/>
+        <xacro:property name="robile_size_y" value="0.233"/>
+        <xacro:property name="robile_size_z" value="0.239"/>
+        
         <joint name="${name}_joint" type="fixed">
             <xacro:insert_block name="origin" />
             <parent link="${parent}"/>
             <child link="${name}_link" />
         </joint>
+        
+        <link name="${name}_link">
+            <!-- Aluminium casing -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robile_description/meshes/robile_brick_housing/general_brick_housing.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
 
-        <xacro:brick_housing name="${name}" color="green"/>
+            <!-- robile lid -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robile_description/meshes/robile_brick_housing/lid.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+
+            <!-- robile lid cover (color passed as a parameter) -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robile_description/meshes/robile_brick_housing/lid_cover_${color}.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+
+            <!-- Collision box for brick housing -->
+            <collision>
+                <origin xyz="0 0 ${robile_size_z/2}" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${robile_size_x} ${robile_size_y} ${robile_size_z}" />
+                </geometry>
+            </collision>
+
+            <!-- Inertia for slave battery brick -->
+            <inertial>
+                <mass value="11.649" />
+                <origin xyz="0 -0.00012 0.09665" />
+                <inertia  ixx="0.090592" ixy="-0.0000008" ixz="0.000011" iyy="0.097288" iyz="0.000217" izz="0.101994" />
+            </inertial>
+
+        </link>
 
     </xacro:macro>
 
