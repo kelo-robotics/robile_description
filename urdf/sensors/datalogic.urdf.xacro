@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!--
+Copyright (c) 2013, Goncalo Cabrita, ISR University of Coimbra
+Copyright (c) 2014, 2015 Clearpath Robotics
+Copyright (c) 2022, KELO Robotics GmbH
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of Clearpath Robotics nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find robile_description)/urdf/sensors/common.xacro" />
+
+    <xacro:macro name="datalogic" params="*origin name:=base_laser_front 
+                                          topic:=base_scan parent:=base_link
+                                          sample_size:=540 update_rate:=10
+                                          min_angle:=-2.35619 max_angle:=2.35619
+                                          min_range:=0.1 max_range:=30.0
+                                          robot_namespace:=/ use_gpu:=true
+                                          visualize:=false" >
+
+        <joint name="${name}_joint" type="fixed">
+            <axis xyz="0 1 0" />
+            <xacro:insert_block name="origin"/>
+            <parent link="${parent}"/>
+            <child link="${name}_link"/>
+        </joint>
+
+        <link name="${name}_link">
+            <inertial>
+                <mass value="1.1" />
+                <origin xyz="0 0 -0.05" rpy="0 0 0" />
+                <inertia ixx="${0.0833333 * 1.1 * (0.102*0.102 + 0.152*0.152)}" ixy="0.0" ixz="0.0"
+                         iyy="${0.0833333 * 1.1 * (0.105*0.105 + 0.152*0.152)}" iyz="0.0"
+                         izz="${0.0833333 * 1.1 * (0.105*0.105 + 0.102*0.102)}" />
+            </inertial>
+            <visual>
+                <origin xyz="-0.1 -0.08 -0.05" rpy="0 0 3.14159" />
+                <geometry>
+                    <!-- Origin of this mesh is the focal point of the LIDAR. -->
+                    <mesh filename="package://robile_description/meshes/sensors/datalogic.dae" />
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="-0.025 0 -0.025" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.105 0.1 0.15" />
+                </geometry>
+            </collision>
+        </link>
+
+
+        <xacro:if value="${use_gpu}">
+            <xacro:gazebo_laser_plugin name="${name}" topic="${topic}" sample_size="${sample_size}"
+                                       update_rate="${update_rate}" min_angle="${min_angle}"
+                                       max_angle="${max_angle}" min_range="${min_range}" max_range="${max_range}"
+                                       robot_namespace="${robot_namespace}" visualize="${visualize}" 
+                                       sensor_type="gpu_ray" plugin_filename="libgazebo_ros_gpu_laser"/>
+        </xacro:if>
+        <xacro:unless value="${use_gpu}">
+            <xacro:gazebo_laser_plugin name="${name}" topic="${topic}" sample_size="${sample_size}"
+                                       update_rate="${update_rate}" min_angle="${min_angle}"
+                                       max_angle="${max_angle}" min_range="${min_range}" max_range="${max_range}"
+                                       robot_namespace="${robot_namespace}" visualize="${visualize}" 
+                                       sensor_type="ray" plugin_filename="libgazebo_ros_laser"/>
+        </xacro:unless>
+
+    </xacro:macro>
+</robot>
