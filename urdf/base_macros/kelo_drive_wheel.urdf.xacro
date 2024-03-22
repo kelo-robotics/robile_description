@@ -87,6 +87,7 @@ License LGPL and BSD license along with this program.
                 </geometry>
             </collision>
 
+            <!-- xacro:cylinder_inertia mass="0.5" radius="0.0515" length="0.035" center_of_mass_roll="1.570796327"/ -->
 <!--
             <inertial>
                 <mass value="2.0829" />
