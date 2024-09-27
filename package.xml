@@ -15,18 +15,10 @@
 
   <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
   <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake_auto</buildtool_depend>
-<!--
-  <exec_depend>joint_state_publisher</exec_depend>
-  <exec_depend>joint_state_publisher_gui</exec_depend>
-  <exec_depend>robot_state_publisher</exec_depend>
-  <exec_depend>rviz2</exec_depend>
-  <exec_depend>xacro</exec_depend>
-  <exec_depend>rosidl_default_generators</exec_depend>
-  <exec_depend>rosidl_cmake</exec_depend>
--->
+
   <export>
     <build_type condition="$ROS_VERSION == 1">catkin</build_type>
     <build_type condition="$ROS_VERSION == 2">ament_cmake</build_type>
-    <!-- gazebo_ros gazebo_model_path="${prefix}/.." / -->
+    <gazebo_ros gazebo_model_path="${prefix}/.." />
   </export>
 </package>
