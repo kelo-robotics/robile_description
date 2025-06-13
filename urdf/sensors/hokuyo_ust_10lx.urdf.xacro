@@ -15,8 +15,8 @@
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="1.57 0 1.57" />
-      <geometry>
-        <mesh filename="package://robile_description/meshes/sensors/UST-10LX.dae" scale="1 1 1" />
+        <geometry>
+          <mesh filename="package://robile_description/meshes/sensors/UST-10LX.dae" scale="1 1 1" />
         </geometry>
       </visual>
       <collision>
